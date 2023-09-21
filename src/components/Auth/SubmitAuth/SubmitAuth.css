@@ -1,0 +1,62 @@
+.submit {
+  max-width: 100%;
+}
+
+.submit__button {
+  width: 100%;
+  margin: 0;
+  padding: 13px 0 15px;
+  border: none;
+  border-radius: 3px;
+  background: #ff6838;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: opacity 0.4s;
+}
+
+.submit__button:hover {
+  opacity: 0.8;
+}
+
+.submit__text-container {
+  max-width: 100%;
+  margin: 16px auto 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.submit__text {
+  margin: 0;
+  color: #a0a0a0;
+}
+
+.submit__login-link {
+  margin: 0;
+  text-decoration: none;
+  color: #ff6838;
+  transition: opacity 0.4s;
+}
+
+.submit__login-link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 500px) {
+  .submit__button {
+    padding-top: 4.6875vw;
+    font-size: 12px;
+  }
+  .submit__text-container {
+    margin-top: 4.375vw;
+    font-size: 12px;
+  }
+}

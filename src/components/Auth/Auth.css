@@ -1,0 +1,32 @@
+.auth {
+  max-width: 100vw;
+  margin: 5.5vw auto;
+}
+
+.auth__container {
+  margin: 0 auto;
+  max-width: 396px;
+}
+
+@media screen and (max-width: 1280px) {
+  .auth {
+    margin: 70px auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .auth {
+    margin: 232px auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .auth {
+    margin: 56px auto 30px;
+  }
+
+  .auth__container {
+    margin: 0 auto;
+    max-width: 260px;
+  }
+}

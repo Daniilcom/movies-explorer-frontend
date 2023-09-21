@@ -1,0 +1,47 @@
+.cardlist {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.cardlist__items {
+  width: 100%;
+  margin: 0 auto;
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 270px));
+  gap: 32px 20px;
+}
+
+.cardlist__button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 1280px) {
+  .cardlist {
+    max-width: 89.0625vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cardlist {
+    max-width: 92.1875vw;
+  }
+
+  .cardlist__items {
+    grid-template-columns: repeat(auto-fill, minmax(auto, 339px));
+    gap: 36px 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cardlist {
+    max-width: 93.75vw;
+  }
+
+  .cardlist__items {
+    grid-template-columns: repeat(auto-fill, minmax(auto, 300px));
+    gap: 20px;
+  }
+}
