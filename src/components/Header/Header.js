@@ -13,7 +13,7 @@ const Header = () => {
       className={location.pathname === '/' ? 'header' : 'header header_white'}
     >
       <div className="header__container">
-        <Link to="/">
+        <Link className="header__logo-link" to="/">
           <img src={logo} alt="Логотип проекта" className="header__logo" />
         </Link>
         <div className="header__auth">

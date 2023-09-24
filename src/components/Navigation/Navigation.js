@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import './Navigation.css'
 import burgerMenuWhite from '../../images/icons/burger-menu__white.svg'
@@ -7,6 +7,28 @@ import close from '../../images/icons/burger-menu__close.svg'
 
 const Navigation = () => {
   const location = useLocation()
+  const [showMenu, setShowMenu] = useState(false)
+  const [hideFirstItem, setHideFirstItem] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 900) {
+        setHideFirstItem(true)
+      } else {
+        setHideFirstItem(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  function handleMenuShow() {
+    setShowMenu(!showMenu)
+  }
 
   function handleLinkColor() {
     if (location.pathname === '/') {
@@ -14,14 +36,9 @@ const Navigation = () => {
     }
     return 'navigation__link navigation__link_black'
   }
-  const linkActive = `${handleLinkColor()} navigation__link-active`
-  const link = `${handleLinkColor()}`
 
-  const [showMenu, setShowMenu] = useState(false)
-
-  function handleMenuShow() {
-    setShowMenu(!showMenu)
-  }
+  const linkActive = handleLinkColor() + ' navigation__link-active'
+  const link = handleLinkColor()
 
   function handleMenuColor() {
     if (location.pathname === '/') {
@@ -29,11 +46,12 @@ const Navigation = () => {
     }
     return burgerMenuBlack
   }
+
   const burgerMenu = handleMenuColor()
 
   return (
     <nav className="navigation">
-      <div className={` ${showMenu ? 'overlay' : ''}`}>
+      <div className={showMenu ? 'overlay' : 'overlay hidden'}>
         <ul
           className={
             showMenu
@@ -41,18 +59,22 @@ const Navigation = () => {
               : 'navigation__list'
           }
         >
-          <li
-            className={
-              showMenu ? 'navigation__item' : 'navigation__item_hidden'
-            }
-          >
-            <NavLink
-              className={({ isActive }) => (isActive ? linkActive : link)}
-              to="/"
+          {!hideFirstItem && (
+            <li
+              className={
+                showMenu
+                  ? 'navigation__item'
+                  : 'navigation__item navigation__item_hidden'
+              }
             >
-              Главная
-            </NavLink>
-          </li>
+              <NavLink
+                className={({ isActive }) => (isActive ? linkActive : link)}
+                to="/"
+              >
+                Главная
+              </NavLink>
+            </li>
+          )}
           <li className="navigation__item">
             <NavLink
               className={({ isActive }) => (isActive ? linkActive : link)}
@@ -70,7 +92,7 @@ const Navigation = () => {
             </NavLink>
           </li>
           <div className="navigation__account">
-            <NavLink className="navigation__link_account" to="/profile">
+            <NavLink className="navigation__link-account" to="/profile">
               Аккаунт
             </NavLink>
           </div>
@@ -78,10 +100,14 @@ const Navigation = () => {
       </div>
       <div className="navigation__burger" onClick={handleMenuShow}>
         {showMenu ? (
-          <img className="navigation__close" src={close} alt="Закрыть" />
+          <img
+            className="navigation__close-icon navigation__icon-activ"
+            src={close}
+            alt="Закрыть"
+          />
         ) : (
           <img
-            className="navigation__burger-icon"
+            className="navigation__burger-icon navigation__icon-activ"
             src={burgerMenu}
             alt="Меню"
           />

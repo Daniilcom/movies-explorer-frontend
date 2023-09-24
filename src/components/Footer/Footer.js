@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__conteiner">
-        <h1 className="footer__title">
+        <p className="footer__title">
           Учебный проект Яндекс.Практикум х BeatFilm.
-        </h1>
+        </p>
         <ul className="footer__list">
           <li className="footer__item">
             <a

@@ -14,29 +14,31 @@ const Movies = () => {
   console.log(setIsLoading)
 
   return (
-    <div className="movies">
+    <>
       <Header />
-      <SearchForm />
-      <div className="movies__container">
-        {isLoading ? (
-          <div className="movies__preloader">
-            <Preloader />
-          </div>
-        ) : (
-          <>
-            {moviesList ? (
-              <>
-                <MoviesCardList list={data} />
-                <button className="movies__button">Ещё</button>
-              </>
-            ) : (
-              <p className="movies__text">Фильмы не найдены</p>
-            )}
-          </>
-        )}
-      </div>
+      <main className="movies">
+        <SearchForm />
+        <section className="movies__container">
+          {isLoading ? (
+            <div className="movies__preloader">
+              <Preloader />
+            </div>
+          ) : (
+            <>
+              {moviesList ? (
+                <>
+                  <MoviesCardList list={data} />
+                  <button className="movies__button">Ещё</button>
+                </>
+              ) : (
+                <p className="movies__text">Фильмы не найдены</p>
+              )}
+            </>
+          )}
+        </section>
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }
 

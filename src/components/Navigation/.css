@@ -89,7 +89,7 @@
   display: none;
 }
 
-.navigation__item_hidden {
+.navigation__item-hidden {
   margin: 0;
   padding: 0;
   visibility: hidden;
@@ -124,6 +124,12 @@
 @media screen and (max-width: 1280px) {
   .navigation__account {
     margin-left: 28.4375vw;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .navigation__account_burger {
+    margin: 50vh auto 8.79vh;
   }
 }
 
@@ -164,12 +170,12 @@
   }
 
   .navigation__list {
-    padding-top: 22.7vh;
+    padding-top: 159px;
     width: 520px;
     min-height: 100vh;
     background-color: #fff;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: stretch;
     align-items: center;
     position: fixed;
     left: 0;
@@ -214,16 +220,12 @@
   .navigation__list-active {
     right: -42%;
   }
-
-  .navigation__account {
-    margin: 50vh auto 12.85vh;
-  }
 }
 
 @media screen and (max-width: 768px) {
   .navigation__burger {
-    right: 3.9vw;
-    top: 1.46vh;
+    right: 30px;
+    top: 15px;
   }
   .navigation__list {
     width: 67.7vw;
@@ -233,10 +235,7 @@
   }
 }
 
-@media screen and (min-height: 1024px) and (max-width: 900px) {
-  .navigation__list {
-    padding-top: 15.5vh;
-  }
+@media screen and (min-height: 1024px) {
   .navigation__account {
     margin: 621px auto 90px;
   }
@@ -244,11 +243,11 @@
 
 @media screen and (max-width: 500px) {
   .navigation__burger {
-    right: 5vw;
+    right: 16px;
   }
 
   .navigation__list {
-    padding-top: 18.46vh;
+    padding-top: 144px;
     width: 100%;
     min-height: 100vh;
     right: -200%;
@@ -268,7 +267,10 @@
     top: 13.44px;
     right: 13.44px;
   }
+}
+
+@media screen and (min-height: 780px) {
   .navigation__account {
-    margin: 57vh auto 5.9vh;
+    margin: 444px auto 46px;
   }
 }

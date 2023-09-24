@@ -17,6 +17,7 @@ const InputAuth = (props) => {
           type={props.typeInput}
           minLength={props.minLength}
           maxLength={props.maxLength}
+          placeholder={props.label}
           required
         />
       </fieldset>

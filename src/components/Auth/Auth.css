@@ -1,32 +1,35 @@
 .auth {
   max-width: 100vw;
-  margin: 5.5vw auto;
+  margin: 5.3vw 0;
+  padding: 0;
 }
 
 .auth__container {
   margin: 0 auto;
+  padding: 0;
   max-width: 396px;
 }
 
 @media screen and (max-width: 1280px) {
   .auth {
-    margin: 70px auto;
+    margin: 10vh 0;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-height: 1024px) {
   .auth {
-    margin: 232px auto;
+    margin: 232px 0;
   }
 }
 
-@media screen and (max-width: 320px) {
-  .auth {
-    margin: 56px auto 30px;
-  }
-
+@media screen and (max-width: 450px) {
   .auth__container {
-    margin: 0 auto;
     max-width: 260px;
+  }
+}
+
+@media screen and (min-height: 780px) and (max-width: 450px) {
+  .auth {
+    margin: 7.2vh 0 3.8vh;
   }
 }

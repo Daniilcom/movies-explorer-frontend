@@ -43,7 +43,7 @@ function MoviesCardList(props) {
   }
 
   return (
-    <section className="cardlist">
+    <div className="cardlist">
       <ul className="cardlist__items">
         {cardsToRender.map((movie) => (
           <li key={movie.id} className="cardlist__item">
@@ -51,7 +51,7 @@ function MoviesCardList(props) {
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   )
 }
 

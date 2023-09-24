@@ -15,7 +15,7 @@ function MoviesCard(props) {
     <div className="card">
       <img
         className="card__img"
-        alt="33 слова о дизайне"
+        alt={`название фильма №${props.movie.id}`}
         src={props.movie.image}
       />
       <div className="card__description">

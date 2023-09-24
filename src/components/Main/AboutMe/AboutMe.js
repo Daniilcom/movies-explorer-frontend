@@ -5,10 +5,10 @@ import Me from '../../../images/me.svg'
 const AboutMe = () => {
   return (
     <section className="about-me" id="about-me">
-      <h1 className="about-me__title">Студент</h1>
+      <h2 className="about-me__title">Студент</h2>
       <div className="about-me__container">
         <div className="about-me__section">
-          <h2 className="about-me__name">Даниил</h2>
+          <h3 className="about-me__name">Даниил</h3>
           <p className="about-me__profession">Фронтенд-разработчик, 28 лет</p>
           <p className="about-me__description">
             Я родился в городе Чайковский Перского края, но живу сейчас в

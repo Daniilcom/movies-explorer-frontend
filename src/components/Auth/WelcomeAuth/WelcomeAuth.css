@@ -31,7 +31,29 @@
   line-height: normal;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (min-height: 700px) {
+  .welcome__logo {
+    margin: 0 0 5.71vh 0;
+  }
+}
+
+@media screen and (min-height: 1024px) and (max-width: 768px) {
+  .welcome__container {
+    padding: 0 0 3.9vh;
+  }
+  .welcome__logo {
+    margin-bottom: 3.9vh;
+  }
+}
+
+@media screen and (min-height: 780px) and (max-width: 450px) {
+  .welcome__container {
+    padding: 0 0 10.25vh;
+  }
+  .welcome__logo {
+    margin-bottom: 6.4vh;
+  }
+
   .welcome__container {
     max-width: 81.25vw;
     padding: 0 0 25vw;

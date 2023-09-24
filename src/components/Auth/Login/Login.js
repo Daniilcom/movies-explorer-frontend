@@ -17,7 +17,7 @@ const Login = (props) => {
     navigate('/')
   }
   return (
-    <div className="login">
+    <section className="login">
       <WelcomeAuth text="Рады видеть!" />
       <form className="login__form" onSubmit={handleSubmit}>
         <InputAuth
@@ -43,7 +43,7 @@ const Login = (props) => {
           linkText="Регистрация"
         />
       </form>
-    </div>
+    </section>
   )
 }
 

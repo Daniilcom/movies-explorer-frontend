@@ -32,7 +32,7 @@
 }
 
 .input__auth:focus {
-  outline: none;
+  outline: 1px solid #465dff;
 }
 
 .input__auth:-webkit-autofill {

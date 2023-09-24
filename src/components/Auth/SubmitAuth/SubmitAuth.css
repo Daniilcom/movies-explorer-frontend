@@ -16,6 +16,7 @@
   font-weight: 500;
   line-height: normal;
   transition: opacity 0.4s;
+  cursor: pointer;
 }
 
 .submit__button:hover {

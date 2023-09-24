@@ -13,7 +13,7 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
+    <section className="register">
       <WelcomeAuth text="Добро пожаловать!" />
       <form className="register__form">
         <InputAuth
@@ -47,7 +47,7 @@ const Register = () => {
           linkText="Войти"
         />
       </form>
-    </div>
+    </section>
   )
 }
 

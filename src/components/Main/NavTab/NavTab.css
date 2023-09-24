@@ -1,4 +1,5 @@
 .nav-tab {
+  width: 100%;
   min-height: 66px;
   margin: 0 auto;
   display: flex;

@@ -12,18 +12,20 @@ const SavedMovies = () => {
   console.log(setHasMovies)
 
   return (
-    <div className="saved-movies">
+    <>
       <Header />
-      <SearchForm />
-      <div className="saved-movies__container">
-        {hasMovies ? (
-          <MoviesCardList list={data} />
-        ) : (
-          <p className="saved-movies__text">Ваш список фильмов пуст</p>
-        )}
-      </div>
+      <main className="saved-movies">
+        <SearchForm />
+        <section className="saved-movies__container">
+          {hasMovies ? (
+            <MoviesCardList list={data} />
+          ) : (
+            <p className="saved-movies__text">Ваш список фильмов пуст</p>
+          )}
+        </section>
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }
 

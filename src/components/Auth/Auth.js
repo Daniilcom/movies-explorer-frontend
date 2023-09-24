@@ -8,7 +8,7 @@ const Auth = (props) => {
   const location = useLocation()
 
   return (
-    <div className="auth">
+    <main className="auth">
       <div className="auth__container">
         {location.pathname === '/signup' ? (
           <Register />
@@ -16,7 +16,7 @@ const Auth = (props) => {
           <Login isLoggedIn={props.isLoggedIn} />
         )}
       </div>
-    </div>
+    </main>
   )
 }
 

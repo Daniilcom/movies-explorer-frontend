@@ -64,7 +64,8 @@
 }
 
 .profile__input:focus {
-  outline: none;
+  border-radius: 3px;
+  outline: 1px solid #465dff;
 }
 
 .profile__input:-webkit-autofill {
@@ -143,9 +144,9 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-height: 1024px) {
   .profile {
-    margin: 236px auto 269px;
+    margin: 23vh auto 26.26vh;
   }
 
   .profile__title {
@@ -158,6 +159,12 @@
 }
 
 @media screen and (max-width: 500px) {
+  .profile__section {
+    max-width: 260px;
+  }
+}
+
+@media screen and (min-height: 780px) and (max-width: 450px) {
   .profile {
     margin: 70px auto 40px;
   }
@@ -187,6 +194,6 @@
   }
 
   .profile__error {
-    margin-top: 430px;
+    margin-top: 400px;
   }
 }

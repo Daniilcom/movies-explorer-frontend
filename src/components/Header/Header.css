@@ -18,10 +18,15 @@
   box-sizing: border-box;
 }
 
+.header__logo-link {
+  min-width: 38px;
+  max-height: 38px;
+  margin: 0;
+  padding: 0;
+}
+
 .header__logo {
   margin: 0 auto 0 0;
-  min-width: 38px;
-  min-height: 38px;
   cursor: pointer;
   transition: opacity 0.4s;
 }
