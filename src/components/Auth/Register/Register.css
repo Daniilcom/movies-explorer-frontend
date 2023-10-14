@@ -1,0 +1,40 @@
+.register__submit {
+  margin-top: 91px;
+  position: relative;
+}
+
+.register__input {
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.register__error {
+  position: absolute;
+  bottom: 100px;
+  margin: 0;
+  padding: 0;
+  color: #ff004c;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (min-height: 700px) {
+  .login__submit {
+    margin-top: 10vh;
+  }
+}
+
+@media screen and (min-height: 1024px) and (max-width: 768px) {
+  .register__submit {
+    margin-top: 6.73vh;
+  }
+}
+
+@media screen and (min-height: 780px) and (max-width: 450px) {
+  .register__submit {
+    margin-top: 20.12vh;
+  }
+}
