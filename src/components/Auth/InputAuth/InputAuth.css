@@ -1,6 +1,6 @@
 .input__fieldset {
   max-width: 100%;
-  margin: 0 auto 20px;
+  margin: 0 auto;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,8 @@
 }
 
 .input__auth {
+  margin: 0;
+  position: relative;
   padding: 15px;
   border: none;
   border-radius: 8px;
@@ -33,29 +35,30 @@
 
 .input__auth:focus {
   outline: 1px solid #465dff;
+  box-shadow: 0 0 3px #465dff;
 }
 
-.input__auth:-webkit-autofill {
+/* .input__auth:-webkit-autofill {
   transition: all 5000s ease-in-out;
-}
+} */
 
 .input__error {
-  margin: 10px auto 0;
+  position: absolute;
+  margin: 3px auto 0;
   color: #ee3465;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.07s linear;
 }
 
-.input__error-visible {
-  visibility: visible;
-  opacity: 1;
+.input__error-color:focus {
+  outline: 1px solid #ee3465;
+  box-shadow: 0 0 3px #ee3465;
 }
 
 .input__error-color {
   color: #ee3465;
+  outline: 1px solid #ee3465;
+  box-shadow: 0 0 3px #ee3465;
 }

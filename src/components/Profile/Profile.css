@@ -5,6 +5,7 @@
 }
 
 .profile__section {
+  position: relative;
   max-width: 410px;
   margin: 0 auto;
   display: flex;
@@ -18,6 +19,23 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.profile__success {
+  position: absolute;
+  top: 70px;
+  left: 130px;
+  margin: 0 auto;
+  text-align: center;
+  color: #465dff;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.1s linear;
+}
+
+.profile__success-visible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .profile__form {
@@ -63,9 +81,20 @@
   line-height: normal;
 }
 
+.profile__error-input {
+  margin: 3px auto 0;
+  color: #ee3465;
+  text-align: right;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .profile__input:focus {
   border-radius: 3px;
   outline: 1px solid #465dff;
+  box-shadow: 0 0 3px #465dff;
 }
 
 .profile__input:-webkit-autofill {

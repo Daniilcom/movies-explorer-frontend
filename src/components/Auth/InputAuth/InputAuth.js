@@ -2,35 +2,48 @@ import React from 'react'
 import './InputAuth.css'
 
 const InputAuth = (props) => {
+  const {
+    useInput,
+    label,
+    error,
+    onActiveField,
+    typeInput,
+    minLength,
+    maxLength,
+    value,
+    onChange,
+    onFocus,
+    onBlur,
+    errorColor,
+  } = props
+
+  const errorMessage = error[useInput]
+
   return (
     <>
       <fieldset className="input__fieldset">
-        <label className="input__label" htmlFor={props.useInput}>
-          {props.label}
+        <label className="input__label" htmlFor={useInput}>
+          {label}
         </label>
         <input
           className={`input__auth ${
-            props.onActiveError ? 'input__error-color' : ''
+            errorMessage || errorColor ? 'input__error-color' : ''
           }`}
-          name={props.useInput}
-          id={props.useInput}
-          type={props.typeInput}
-          minLength={props.minLength}
-          maxLength={props.maxLength}
-          placeholder={props.label}
+          name={useInput}
+          id={useInput}
+          type={typeInput}
+          minLength={minLength}
+          maxLength={maxLength}
+          placeholder={label}
+          value={value || ''}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
           required
         />
       </fieldset>
-      {props.useInput === 'password' ? (
-        <span
-          className={`input__error ${
-            props.onActiveError ? 'input__error-visible' : ''
-          } `}
-        >
-          Что-то пошло не так...
-        </span>
-      ) : (
-        <span className="input__error"></span>
+      {onActiveField === useInput && errorMessage && (
+        <span className="input__error">{errorMessage}</span>
       )}
     </>
   )

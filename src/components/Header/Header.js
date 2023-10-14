@@ -7,33 +7,40 @@ import Navigation from '../Navigation/Navigation'
 
 const Header = () => {
   const currentUser = useContext(CurrentUserContext)
+
   const location = useLocation()
+  const handlePath = (path) => location.pathname === path
+
   return (
-    <header
-      className={location.pathname === '/' ? 'header' : 'header header_white'}
-    >
-      <div className="header__container">
-        <Link className="header__logo-link" to="/">
-          <img src={logo} alt="Логотип проекта" className="header__logo" />
-        </Link>
-        <div className="header__auth">
-          {currentUser ? (
-            <>
-              <Navigation />
-            </>
-          ) : (
-            <>
-              <Link to="/signup" className="header__signup">
-                Регистрация
-              </Link>
-              <Link to="/signin" className="header__signin">
-                Войти
-              </Link>
-            </>
-          )}
+    <>
+      {/* {currentUser.isLoggedIn === null ? (
+        <></>
+      ) : ( */}
+      <header className={handlePath('/') ? 'header' : 'header header_white'}>
+        <div className="header__container">
+          <Link className="header__logo-link" to="/">
+            <img src={logo} alt="Логотип проекта" className="header__logo" />
+          </Link>
+          <div className="header__auth">
+            {currentUser.isLoggedIn ? (
+              <>
+                <Navigation />
+              </>
+            ) : (
+              <>
+                <Link to="/signup" className="header__signup">
+                  Регистрация
+                </Link>
+                <Link to="/signin" className="header__signin">
+                  Войти
+                </Link>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      {/* )} */}
+    </>
   )
 }
 

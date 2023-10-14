@@ -15,6 +15,35 @@ import img14 from '../images/moviesImg/img14.svg'
 import img15 from '../images/moviesImg/img15.svg'
 import img16 from '../images/moviesImg/img16.svg'
 
+const resizeTimeoutId = useRef(null)
+
+useEffect(() => {
+  const handleResize = () => {
+    clearTimeout(resizeTimeoutId.current)
+
+    resizeTimeoutId.current = setTimeout(() => {
+      setWidth(window.innerWidth)
+      // handleMovieFiltering(
+      //   searchInputValue,
+      //   savedMovies,
+      //   shortFilmFilter,
+      //   width,
+      //   setMoviesToRender,
+      //   moviesFilter,
+      //   shortMoviesFilter,
+      //   calculateMoviesToRender
+      // )
+    }, 300)
+  }
+
+  window.addEventListener('resize', handleResize)
+
+  return () => {
+    window.removeEventListener('resize', handleResize)
+    clearTimeout(resizeTimeoutId)
+  }
+}, [savedMovies, searchInputValue])
+
 const moviesArr = [
   {
     id: 1,

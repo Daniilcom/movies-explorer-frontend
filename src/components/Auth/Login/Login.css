@@ -1,5 +1,24 @@
 .login__submit {
-  margin-top: 157px;
+  margin-top: 179px;
+  position: relative;
+}
+
+.login__input {
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.login__error {
+  position: absolute;
+  bottom: 185px;
+  margin: 0;
+  padding: 0;
+  color: #ff004c;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 @media screen and (min-height: 700px) {

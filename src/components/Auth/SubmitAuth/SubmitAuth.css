@@ -23,6 +23,12 @@
   opacity: 0.8;
 }
 
+.submit__button:disabled {
+  color: #c2c2c2;
+  background: #f8f8f8;
+  opacity: 1;
+}
+
 .submit__text-container {
   max-width: 100%;
   margin: 16px auto 0;

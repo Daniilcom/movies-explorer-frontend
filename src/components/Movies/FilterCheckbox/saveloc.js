@@ -1,13 +1,4 @@
-import { React, useState, useEffect } from 'react'
-import useLocalStorage from '../../hooks/useLocalStorage'
-import {
-  moviesFilter,
-  shortMoviesFilter,
-  calculateMoviesToRender,
-  handleItemsFiltering,
-  calculateMoviesToAdd,
-  searchItem,
-} from '../../utils/halpers'
+import { React, useState, useEffect, useRef } from 'react'
 import './Movies.css'
 import Header from '../Header/Header'
 import SearchForm from './SearchForm/SearchForm'
@@ -17,30 +8,26 @@ import Preloader from '../Preloader/Preloader'
 
 import moviesApi from '../../utils/MoviesApi'
 
-const Movies = (props) => {
+const Movies = () => {
   const [allMovies, setAllMovies] = useState([])
   const [searchInputValue, setSearchInputValue] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [filteredMovies, setFilteredMovies] = useState([])
   const [width, setWidth] = useState(window.innerWidth)
-  const [moviesToRender, setMoviesToRender] = useLocalStorage('addMovies', [])
-  const [shortFilmFilter, setShortFilmFilter] = useLocalStorage(
-    'shortFilms',
-    false
-  )
+  const [moviesToRender, setMoviesToRender] = useState([])
 
-  const {
-    onSave,
-    onDelete,
-    savedMovies,
-    setSavedMovies,
-    isLoading,
-    setIsLoading,
-  } = props
-
-  const handleSearchMovies = (inputValue) => {
-    searchItem(inputValue, setSearchInputValue, 'addMovies', 'searchInputValue')
-    loadMovies()
+  const moviesFilter = (value, movies) => {
+    return movies.filter((movie) => {
+      return movie.nameRU.toLowerCase().includes(value.toLowerCase())
+    })
+  }
+  const searchMovies = (inputValue) => {
+    if (inputValue !== searchInputValue) {
+      localStorage.removeItem('addMovies')
+    }
+    localStorage.setItem('searchInputValue', inputValue)
+    setSearchInputValue(inputValue)
   }
 
   const loadMovies = async () => {
@@ -64,26 +51,6 @@ const Movies = (props) => {
     }
   }
 
-  const listMovies = moviesToRender.length
-
-  const handleAddMovies = () => {
-    const moviesToAdd = calculateMoviesToAdd(filteredMovies, listMovies, width)
-    setMoviesToRender((prevMovies) => [...prevMovies, ...moviesToAdd])
-  }
-
-  const handleMoviesFiltering = () => {
-    return handleItemsFiltering(
-      searchInputValue,
-      allMovies,
-      shortFilmFilter,
-      width,
-      setMoviesToRender,
-      moviesFilter,
-      shortMoviesFilter,
-      calculateMoviesToRender
-    )
-  }
-
   useEffect(() => {
     const storedSearchInput = localStorage.getItem('searchInputValue')
     if (storedSearchInput) {
@@ -93,19 +60,84 @@ const Movies = (props) => {
   }, [])
 
   useEffect(() => {
-    const filteredList = handleMoviesFiltering()
+    const filteredList = moviesFilter(searchInputValue, allMovies)
     setFilteredMovies(filteredList)
-  }, [searchInputValue, allMovies, shortFilmFilter, width])
+  }, [allMovies, searchInputValue])
 
+  const resizeTimeoutId = useRef(null)
+
+  useEffect(() => {
+    const handleResize = () => {
+      clearTimeout(resizeTimeoutId.current)
+
+      resizeTimeoutId.current = setTimeout(() => {
+        setWidth(window.innerWidth)
+      }, 300)
+
+      setWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(resizeTimeoutId)
+    }
+  }, [])
+
+  useEffect(() => {
+    const storedAddMovies = localStorage.getItem('addMovies')
+    const parsedAddMovies = JSON.parse(storedAddMovies)
+    if (parsedAddMovies !== null && parsedAddMovies.length > 0) {
+      setMoviesToRender(parsedAddMovies)
+    } else {
+      let moviesToRender
+
+      if (width <= 767) {
+        moviesToRender = filteredMovies.slice(0, 5)
+      } else if (width <= 955) {
+        moviesToRender = filteredMovies.slice(0, 8)
+      } else if (width < 1280) {
+        moviesToRender = filteredMovies.slice(0, 12)
+      } else {
+        moviesToRender = filteredMovies.slice(0, 16)
+      }
+
+      setMoviesToRender(moviesToRender)
+      localStorage.setItem('addMovies', JSON.stringify(moviesToRender))
+    }
+  }, [width, filteredMovies])
+
+  const listMovies = moviesToRender.length
+
+  const handleAddMovies = () => {
+    let moviesToAdd
+
+    if (width <= 767) {
+      moviesToAdd = filteredMovies.slice(listMovies, listMovies + 2)
+    } else if (width <= 955) {
+      moviesToAdd = filteredMovies.slice(listMovies, listMovies + 2)
+    } else if (width < 1280) {
+      moviesToAdd = filteredMovies.slice(listMovies, listMovies + 3)
+    } else {
+      moviesToAdd = filteredMovies.slice(listMovies, listMovies + 4)
+    }
+
+    setMoviesToRender((prevMovies) => [...prevMovies, ...moviesToAdd])
+    localStorage.setItem(
+      'addMovies',
+      JSON.stringify([...moviesToRender, ...moviesToAdd])
+    )
+  }
   return (
     <>
       <Header />
       <main className="movies">
         <SearchForm
-          onSearch={handleSearchMovies}
-          shortFilmFilter={shortFilmFilter}
-          setShortFilmFilter={setShortFilmFilter}
-          localStorageKey={'searchInputValue'}
+          onSearch={searchMovies}
+          onSubmit={loadMovies}
+          // shortFilmFilter={shortFilmFilter}
+          // setShortFilmFilter={setShortFilmFilter}
         />
         <section className="movies__container">
           {isLoading ? (
@@ -132,16 +164,7 @@ const Movies = (props) => {
                     <>
                       {listMovies > 0 ? (
                         <>
-                          <MoviesCardList
-                            setWidth={setWidth}
-                            onMoviesFiltering={handleMoviesFiltering}
-                            searchInputValue={searchInputValue}
-                            movies={moviesToRender}
-                            onSave={onSave}
-                            onDelete={onDelete}
-                            savedMovies={savedMovies}
-                            setSavedMovies={setSavedMovies}
-                          />
+                          <MoviesCardList movies={moviesToRender} />
                           {listMovies > 0 &&
                             listMovies < filteredMovies.length && (
                               <button

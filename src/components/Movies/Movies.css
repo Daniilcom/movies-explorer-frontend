@@ -9,7 +9,7 @@
 
 .movies__button {
   width: 100%;
-  margin: 80px auto;
+  margin: 0 auto 80px;
   padding: 11px 0 9px;
   border: none;
   border-radius: 6px;
@@ -29,7 +29,8 @@
 }
 
 .movies__text {
-  margin: 80px auto;
+  min-height: 10vh;
+  margin: 120px auto;
   text-align: center;
   color: #a0a0a0;
   font-size: 25px;
@@ -54,8 +55,26 @@
   }
 }
 
+@media screen and (min-height: 1024px) {
+  .movies__text {
+    min-height: 29vh;
+  }
+}
+
+@media screen and (min-height: 1180px) {
+  .movies__text {
+    min-height: 39vh;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .movies__container {
     max-width: 93.75vw;
+  }
+
+  .movies__text {
+    min-height: 19vh;
+    margin: 100px auto;
+    font-size: 15px;
   }
 }

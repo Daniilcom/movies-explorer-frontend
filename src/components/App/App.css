@@ -11,3 +11,9 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
 }
+
+.app__preloader {
+  max-width: 50%;
+  margin: 15% 23% 0;
+  align-items: center;
+}
